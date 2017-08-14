@@ -1,4 +1,5 @@
 var express = require('express');
+var moment = require('moment');
 var router = express.Router();
 
 router.get('/:query', function(req, res, next) {
@@ -7,14 +8,17 @@ router.get('/:query', function(req, res, next) {
 
   if ( !req.params.query.match(/[a-z]/i) ) {
     unixTime = req.params.query
-    let time = new Date(req.params.query * 1000)
-    formatted = time.toISOString()
+    formatted = moment.unix(unixTime).format("MM/DD/YYYY");
+
+    res.send({
+      unix: unixTime,
+      formatted: formatted
+    })
+
+  } else {
+    res.send(req.params.query)
   }
 
-  res.send({
-    unix: unixTime,
-    formatted: formatted
-  } )
 });
 
 module.exports = router;
