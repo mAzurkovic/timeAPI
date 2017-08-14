@@ -11,10 +11,10 @@ router.get('/:query', function(req, res, next) {
     formatted = time.toISOString()
   }
 
-  res.send(JSON.stringify( {
-    'unix': unixTime,
-    'formatted': formatted
-  } ))
+  res.send({
+    unix: unixTime,
+    formatted: formatted
+  } )
 });
 
 module.exports = router;
