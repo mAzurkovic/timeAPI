@@ -7,10 +7,10 @@ router.get('/:query', function(req, res, next) {
 
   if ( !req.params.query.match(/[a-z]/i) ) {
     unixTime = req.params.query
-  } else {
     let time = new Date(req.params.query * 1000)
     formatted = time.toISOString()
   }
+
   res.send(JSON.stringify( {
     'unix': unixTime,
     'formatted': formatted
